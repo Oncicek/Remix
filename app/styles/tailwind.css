@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 html,
+main,
 body {
-  height: 100%;
+  margin: 0px;
+  min-height: 100vh;
 }

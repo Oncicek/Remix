@@ -4,8 +4,27 @@ interface NoteListProps {
   notes: any;
 }
 
-const NoteList: FC<NoteListProps> = ({ notes }) => {
-  return <div>NoteList</div>;
-};
+const NoteList: FC<NoteListProps> = ({ notes }) => (
+  <>
+    {notes.map((note: any, index: number) => (
+      <div key={note.id} className="mt-6 bg-[pink] w-max p-4 rounded-xl m-4">
+        <article>
+          <header>
+            <ul>
+              <li>#{index + 1}</li>
+              <li>
+                <time dateTime={note.id}>
+                  {new Date(note.id).toLocaleDateString("cs-CZ")}
+                </time>
+              </li>
+            </ul>
+            <h2>{note.title}</h2>
+          </header>
+          <p>{note.content}</p>
+        </article>
+      </div>
+    ))}
+  </>
+);
 
 export default NoteList;

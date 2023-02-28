@@ -1,8 +1,13 @@
+import { Form, useNavigation } from "@remix-run/react";
+
 const NewNote = () => {
   const style =
     "border-solid border-[1px] border-black p-2 rounded bg-[lightGrey] m-2";
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   return (
-    <form
+    <Form
       method="post"
       id="note-form"
       className="border-solid border-[1px] border-black p-2 rounded h-max self-center flex flex-col gap-y-5"
@@ -30,9 +35,11 @@ const NewNote = () => {
         />
       </div>
       <div className={style}>
-        <button className="w-full">Add Note</button>
+        <button disabled={isSubmitting} className="w-full">
+          {isSubmitting ? "Submitting..." : "Add Note"}
+        </button>
       </div>
-    </form>
+    </Form>
   );
 };
 
