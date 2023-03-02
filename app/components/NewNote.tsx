@@ -1,4 +1,4 @@
-import { Form, useNavigation } from "@remix-run/react";
+import { Form, useActionData, useNavigation } from "@remix-run/react";
 
 const NewNote = () => {
   const style =
@@ -6,12 +6,15 @@ const NewNote = () => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
 
+  const data = useActionData();
+
   return (
     <Form
       method="post"
       id="note-form"
       className="border-solid border-[1px] border-black p-2 rounded h-max self-center flex flex-col gap-y-5"
     >
+      <p>{data?.message}</p>
       <div className={style}>
         <label htmlFor="title">Title</label>
         <input

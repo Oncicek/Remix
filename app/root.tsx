@@ -1,5 +1,9 @@
 import stylesheet from "./styles/tailwind.css";
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type {
+  ErrorBoundaryComponent,
+  LinksFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -19,6 +23,28 @@ export const meta: MetaFunction = () => ({
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ];
+
+export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => (
+  <html lang="en">
+    <head>
+      <Meta />
+      <Links />
+      <title>An error occured!</title>
+    </head>
+    <body>
+      <header>
+        <MainNavigation />
+      </header>
+      <main>
+        <h1>An error occured!</h1>
+        <h2>{error.message}</h2>
+      </main>
+      <ScrollRestoration />
+      <Scripts />
+      <LiveReload />
+    </body>
+  </html>
+);
 
 export default function App() {
   return (
